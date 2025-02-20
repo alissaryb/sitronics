@@ -33,10 +33,6 @@ def get_info_map():
 def index():
     return render_template("index.html", title="")
 
-@app.route('/cards', methods=['GET', 'POST'])
-def cards():
-    return render_template("cards.html", title="")
-
 @app.route('/courses', methods=['GET', 'POST'])
 def courses():
     organizations = get_organization()
@@ -49,10 +45,19 @@ def map():
     print(cities)
     return render_template("map.html", title="", cities=cities)
 
-@app.route('/page_course/<id>', methods=['GET', 'POST'])
-def page_course():
+@app.route('/page_course/<cour_id>', methods=['GET', 'POST'])
+def page_course(cour_id):
+    cour = {}
+    print(cour_id, type(cour_id))
 
-    return render_template("page_course.html", title="")
+    for i in get_courses():
+        if int(cour_id) == i['id']:
+            cour = i
+            break
+
+    teachs = get_teachers()
+    teach = teachs[cour['id_teacher']]
+    return render_template("page_course.html", title="", cour=cour, teach=teach)
 
 @app.route('/check')
 def check():
