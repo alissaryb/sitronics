@@ -6,9 +6,9 @@ app = Flask(__name__)
 def get_courses():
     return [
         {"id" : 0, "name_course" : "Введение в SQL", "id_teacher" : 0, "address" : "", "coords": "", "type_online" : 1, "organization" : "МТС", "date_day" : "Четверг", "time_start" : "10:00", "time_end" : "12:00", "price" : 300, "rank" : 9.5, "verified" : 1},
-         {"id" : 1, "name_course" : "Мужики кончают в рот негритянке", "id_teacher" : 1, "address" : "24 Minin Street, Building 1, Nizhny Novgorod, Russia", "coords": [56.326552, 44.024662], "type_online": 0,  "organization" : "Sitronics", "date_day" : "Пятница", "time_start" : "18:00", "time_end" : "20:00", "price" : 400, "rank" : 8.8, "verified" : 0},
-         {"id" : 2, "name_course": "Искусственный интеллект", "id_teacher" : 2, "address" : "260 Maxim Gorky Street, Office 27, 4th Floor, Nizhny Novgorod, Russia", "coords": [56.322005, 44.032550], "type_online": 0, "organization" : "Sinergia", "date_day": "Вторник", "time_start" : "14:30", "time_end" : "17:30", "price": 750, "rank" : 4.5, "verified" : 1},
-         {"id" : 3, "name_course": "Веб разработка", "id_teacher" : 3, "address" : "68 Karl Marx Street, Kazan, Republic of Tatarstan, Russia",  "coords": [55.7943607, 49.13753724120586], "type_online": 0,"organization" : "T-bank", "date_day": "Суббота", "time_start" : "16:40", "time_end" : "17:40", "price": 900, "rank" : 2.5, "verified" : 0}]
+         {"id" : 1, "name_course" : "Вокал", "id_teacher" : 1, "address" : "24 Minin Street, Building 1, Nizhny Novgorod, Russia", "coords": [56.326552, 44.024662], "type_online": 0,  "organization" : "Sitronics", "date_day" : "Пятница", "time_start" : "18:00", "time_end" : "20:00", "price" : 400, "rank" : 8.8, "verified" : 0},
+         {"id" : 2, "name_course": "AI с нуля", "id_teacher" : 0, "address" : "260 Maxim Gorky Street, Office 27, 4th Floor, Nizhny Novgorod, Russia", "coords": [56.322005, 44.032550], "type_online": 0, "organization" : "Sinergia", "date_day": "Вторник", "time_start" : "14:30", "time_end" : "17:30", "price": 750, "rank" : 4.5, "verified" : 1},
+         {"id" : 3, "name_course": "Веб-разработка", "id_teacher" : 1, "address" : "68 Karl Marx Street, Kazan, Republic of Tatarstan, Russia",  "coords": [55.7943607, 49.13753724120586], "type_online": 0,"organization" : "T-bank", "date_day": "Суббота", "time_start" : "16:40", "time_end" : "17:40", "price": 900, "rank" : 2.5, "verified" : 0}]
 def get_teachers():
     return {0 : {"name" : "Алиса", "surname" : "Рыбакова", "patronymic" : "Ивановна"}, 1 : {"name" : "Михаил", "surname" : "Лавренов", "patronymic" : "Иванович"}}
 
@@ -56,7 +56,9 @@ def page_course(cour_id):
             break
 
     teachs = get_teachers()
-    teach = teachs[cour['id_teacher']]
+    print(teachs)
+    print(int(cour['id_teacher']))
+    teach = teachs[int(cour['id_teacher'])]
     return render_template("page_course.html", title="", cour=cour, teach=teach)
 
 @app.route('/check')
