@@ -1,0 +1,60 @@
+ <nav class="navbar navbar-expand-md my-nav py-3 px-5">
+    <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
+        <!-- <img src="/static/media/logo.png" width="37" height="50" class="bi me-2"> -->
+        <span class="text-logo"><a href="/">Men</a></span>
+    </span>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/">Главная</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Обучение
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    <li><a class="dropdown-item" href="/cards">Карточки</a></li>
+                    <li><a class="dropdown-item" href="/">1</a></li>
+                    <li><a class="dropdown-item" href="/">2</a></li>
+                </ul>
+            </li>
+
+        </ul>
+        {% if 1 %}
+            <div class="text-end d-none d-lg-block py-2">
+                <a href="/login" class="btn btn-violet">Вход</a>
+                <a href="/register" class="btn btn-violet">Регистрация</a>
+            </div>
+            <div class="text d-lg-none py-2">
+                <a href="/login" class="btn btn-violet">Вход</a>
+                <a href="/register" class="btn btn-violet">Регистрация</a>
+            </div>
+        {% else %}
+            <div class="text-end d-none d-lg-block py-2">
+                <a href="/logout" class="btn btn-red btn">Выйти</a>
+            </div>
+            <div class="text d-lg-none py-2">
+                <a href="/logout" class="btn btn-red btn">Выйти</a>
+            </div>
+        {% endif %}
+
+    </div>
+</nav>
+
+    <script>
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Удаляем класс active у всех nav-item
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                // Добавляем класс active к текущему nav-item
+                this.classList.add('active');
+            });
+        });
+    </script>
