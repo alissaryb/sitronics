@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<div class="px-5 py-4">
+
+    <div class="filter-container tablo mt-5" style="position: sticky; top: 7rem; overflow-y: auto;">
+        <label for="typeFilter">Фильтр по типу:</label>
+        <select id="typeFilter" onchange="filterTasks()">
+            <option value="">Все</option>
+
+            <option value="19-21">19-21</option>
+            {% for type in range(22, 28) %}
+            <option value="{{ type }}">{{ type }}</option>
+            {% endfor %}
+        </select>
+
+        <br>
+        <br>
+
+        <label>Фильтр по сложности:</label>
+        <br>
+        <div>
+            <label><input type="checkbox" value="Очевидная" onchange="filterTasks(this)" class="custom-checkbox form-check-input" style="margin-right: 5px;">Очевидная</label><br>
+            <label><input type="checkbox" value="Очень легкая" onchange="filterTasks(this)" class="custom-checkbox form-check-input" style="margin-right: 5px;">Очень легкая</label><br>
+            <label><input type="checkbox" value="Легкая" onchange="filterTasks(this)" class="custom-checkbox form-check-input" style="margin-right: 5px;">Легкая</label><br>
+            <label><input type="checkbox" value="Средняя" onchange="filterTasks(this)" class="custom-checkbox form-check-input" style="margin-right: 5px;">Средняя</label><br>
+            <label><input type="checkbox" value="Тяжелая" onchange="filterTasks(this)" class="custom-checkbox form-check-input" style="margin-right: 5px;">Тяжелая</label><br>
+            <label><input type="checkbox" value="Очень тяжелая" onchange="filterTasks(this)" class="custom-checkbox form-check-input" style="margin-right: 5px;">Очень тяжелая</label><br>
+            <label><input type="checkbox" value="Гроб" onchange="filterTasks(this)" class="custom-checkbox form-check-input" style="margin-right: 5px;">Гроб</label><br>
+            <label><input type="checkbox" value="Все" onchange="filterTasks(this)" class="custom-checkbox form-check-input" style="margin-right: 5px;">Все</label>
+        </div>
+    </div>
+
+
+
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+    {% for i in courses %}
+        <div class="col d-flex">
+            <!--<div class="card flex-fill">-->
+                <div class="card-body d-flex flex-column p-4">
+                    <h4 style="color: white">{{ i['name_course'] }}</h4>
+                    <hr>
+                    <div class="w-text">Организатор: {{ i['institutions'] }}</div>
+                    <div class="w-text">Время {{ i['time_start'] }} {{ i['time_end'] }}</div>
+                    <br>
+
+                    <div class="mt-auto">
+                        <a href="#" class="btn btn-violet">Перейти</a>
+                    </div>
+                </div>
+
+        </div>
+
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

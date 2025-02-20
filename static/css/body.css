@@ -1,0 +1,11 @@
+body {
+    background-position: center;
+    background-repeat: no-repeat; /*повторение фона*/
+    background-attachment: fixed; /*фон фиксирован*/
+    background: #3d3c41;
+    padding-top: 70px; /*отступ сверху для header*/
+}
+
+.w-text {
+    color: white;
+}
