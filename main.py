@@ -23,6 +23,31 @@ def cards():
 def cards():
     return render_template("map.html", title="")
 
+@app.route('/check')
+def check():
+    names = ['Иванов Иван Иванович', 'Петров Петр Петрович', 'Сидоров Сидор Сидорович']
+    educations = ['Московский государственный университет', 'Санкт-Петербургский государственный университет', 'Новосибирский государственный университет']
+    ages = [30, 35, 40]
+
+    teacher = {
+        'name': random.choice(names),
+        'age': random.choice(ages),
+        'education': random.choice(educations),
+        'photo': 'static/images/teacher.jpg',
+        'confirmation_process': (
+            "1. Проведение открытых уроков.\n"
+            "2. Оценка отзывов студентов.\n"
+            "3. Регулярные аттестации.\n"
+            "4. Участие в профессиональных конкурсах."
+        )
+    }
+    return render_template('check.html', teacher=teacher)
+
+@app.route('/feedback')
+def feedback():
+    ratings = [10, 20, 30, 25, 15]  # Количество отзывов по звёздам
+    total_reviews = sum(ratings)  # Общее количество отзывов
+    return render_template('feedback.html', ratings=ratings, total_reviews=total_reviews)
 
 if __name__ == "__main__":
     app.run(port=8080, host='127.0.0.1', threaded=True)
