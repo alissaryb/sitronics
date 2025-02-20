@@ -2,7 +2,7 @@ from geopy.geocoders import Nominatim
 import time
 
 def get_coordinates(address):
-    time.sleep(1)
+    time.sleep(3)
     geolocator = Nominatim(user_agent="myGeocoder")
 
     # Получаем местоположение по адресу
@@ -13,19 +13,18 @@ def get_coordinates(address):
     else:
         return None
 
-# Пример использования
-list_address = [
-    "1600 Amphitheatre Parkway, Mountain View, CA, 94043, USA",
-    "Red Square, Moscow, Russia",
-    "221B Baker Street, London, UK",
-    "Tverskaya St, 7, Moscow, Russia"
-]
+if __name__ == '__main__':
+    list_address = [
+        "24 Minin Street, Building 1, Nizhny Novgorod, Russia",
+        "260 Maxim Gorky Street, Office 27, 4th Floor, Nizhny Novgorod, Russia",
+        "68 Karl Marx Street, Kazan, Republic of Tatarstan, Russia"
+    ]
 
-for address in list_address:
-    coordinates = get_coordinates(address)
-    time.sleep(1)  # Задержка в 1 секунду между запросами
+    for address in list_address:
+        coordinates = get_coordinates(address)
+        time.sleep(1)
 
-    if coordinates:
-        print(f"Координаты для '{address}': {coordinates}")
-    else:
-        print(f"Не удалось найти координаты для '{address}'")
+        if coordinates:
+            print(f"Координаты для '{address}': {coordinates}")
+        else:
+            print(f"Не удалось найти координаты для '{address}'")
