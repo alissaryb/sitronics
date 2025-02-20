@@ -1,50 +1,44 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет ученика</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #343a40;
-            color: white;
-        }
-        .card {
-            background-color: #495057;
-            border: none;
-        }
-        h5, h6 {
-            color: #f8f9fa;
-        }
-        .custom-text-info {
-            color: #d1d1d1; /* Светло-серый цвет */
-        }
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid #d1d1d1; /* Светло-серый ободок */
-        }
-        .activity-table {
-            background-color: #6c757d;
-        }
-    </style>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block main_content %}
+
+
+<style>
+
+    .custom-text-info {
+        color: #d1d1d1; /* Светло-серый цвет */
+    }
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #d1d1d1; /* Светло-серый ободок */
+    }
+    .activity-table {
+        background-color: #6c757d;
+    }
+
+    .card-title {
+        color: white;
+    }
+    .card-text {
+        color: white;
+    }
+
+</style>
+
     <div class="container mt-5">
         <div class="card">
             <div class="row g-0">
-                <div class="col-md-4 d-flex justify-content-center align-items-center">
-                    <img src="path/to/student_photo.jpg" class="profile-image p-3" alt="Фотография ученика">
+                <div class="col-md-4 d-flex justify-content-center align-items-center" style="background: var(--card-bg); border-radius: 0.5rem">
+                    <img src="static/images/image.png" class="profile-image p-1" alt="Фотография ученика">
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Иванов Иван Иванович</h5>
+                    <div class="card-body" style="border-radius: 0.5rem; margin-left: 1px">
+                        <p class="card-text"><strong>ФИО:</strong> Иванов Иван Иванович</p>
                         <p class="card-text"><strong>Место обучения:</strong> Университет ИТ, Группа 101</p>
                         <p class="card-text"><strong>Статус:</strong> Специалист-разработчик</p>
-                        <h6 class="card-subtitle mb-2 custom-text-info">Личное описание:</h6>
+                        <h6 class="card-title"><strong>Личное описание:</strong></h6>
                         <p class="card-text">Я увлечён разработкой программного обеспечения и постоянно стремлюсь улучшать свои навыки. Участвую в различных проектах и конкурсах.</p>
                     </div>
                 </div>
@@ -54,7 +48,7 @@
         <div class="card mt-4">
             <div class="card-body">
                 <h6 class="card-subtitle mb-2 custom-text-info">Активность на сайте:</h6>
-                <table class="table table-dark activity-table">
+                <table>
                     <thead>
                         <tr>
                             <th scope="col">Дата</th>
@@ -89,6 +83,4 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}

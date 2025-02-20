@@ -108,6 +108,13 @@ def repetitors():
     teacher = get_teachers()
     return render_template('repetitors.html', teacher=teacher)
 
+
+@app.route('/account')
+def account():
+    teacher = get_teachers()
+    return render_template('account.html', teacher=teacher)
+
+
 @app.route('/repetitor/<rep_id>')
 def repetitor(rep_id):
     teachers = get_teachers()

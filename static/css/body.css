@@ -35,6 +35,8 @@ div {
     font-family: 'Arial';
 }
 
+
+
 .tablo {
     border: 1px solid #000000;
     border-radius: 0.5rem;
@@ -43,4 +45,25 @@ div {
     list-style-position: outside;
     margin-top: 1rem;
     padding: 15px 15px 15px 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    background-color: #333;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #555;
+}
+
+th {
+    background-color: #444;
+}
+
+tr:hover {
+    background-color: #555;
 }
