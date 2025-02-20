@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль Преподавателя</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #343a40;
+            color: white;
+        }
+        .card {
+            background-color: #495057;
+            border: none;
+        }
+        h5, h6 {
+            color: #f8f9fa;
+        }
+        .confirmation-list {
+            margin-left: 20px; /* Отступ для списка */
+        }
+        .custom-text-info {
+            color: #d1d1d1; /* Светло-серый цвет */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center align-items-center"> <!-- Flexbox для центрирования -->
+                    <img src="{{ teacher.photo }}" class="img-fluid rounded-start p-3" alt="Фотография преподавателя"> <!-- Добавлен отступ -->
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ teacher.name }}</h5>
+                        <p class="card-text"><strong>Возраст:</strong> {{ teacher.age }} лет</p>
+                        <p class="card-text"><strong>Место обучения:</strong> {{ teacher.education }}</p>
+                        <p class="card-text"><strong>Высшее образование:</strong> ✅ </p>
+                        <h6 class="card-subtitle mb-2 custom-text-info">Процесс подтверждения качества преподавателя:</h6>
+                        <ul class="confirmation-list">
+                            <li>Проведение открытых уроков.</li>
+                            <li>Оценка отзывов студентов.</li>
+                            <li>Регулярные аттестации.</li>
+                            <li>Участие в профессиональных конкурсах.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
