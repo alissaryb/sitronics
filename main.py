@@ -88,6 +88,16 @@ def login():
 def register():
     return render_template('signup.html')
 
+@app.route('/repetitors')
+def repetitors():
+    teacher = [
+    {"id" : 0, "name" : "Бернштейн Лев Евгеньевич", "age" : 45, "education": "НИУ ВШЭ", "coll_deg" : 1, "mail" : "bernshtein@mail.ru"},
+    {"id" : 1, "name" : "Рыбакова Алиса Сергеевна", "age" : 52, "education": "Синергия", "coll_deg" : 0, "mail" : "alisa@mail.ru"  },
+    {"id" : 2, "name" : "Брусенцев Александр Петрович", "age" : 69, "education": "МФТИ", "coll_deg" : 1, "mail" : "brusntsev@mail.ru"  },
+    {"id" : 3, "name" : "Амирханян Михаил Александрович", "age" : 28, "education": "МГУ", "coll_deg" : 0, "mail" : "amirihan@mail.ru"   }
+    ]
+    return render_template('repetitors.html', teacher=teacher)
+
 
 if __name__ == "__main__":
     app.run(port=8080, host='127.0.0.1', threaded=True)
