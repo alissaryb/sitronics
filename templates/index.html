@@ -42,7 +42,7 @@
             <div class="card h-100 border-violet hover-scale">
                 <div class="card-body text-center">
                     <i class="bi bi-building fs-1 text-violet mb-3"></i>
-                    <h3>Университеты</h3>
+                    <h3 style="color: white">Университеты</h3>
                     <p>База вузов с рейтингами и программами обучения</p>
                     <a href="/universities" class="stretched-link"></a>
                 </div>
@@ -73,7 +73,7 @@
 
 <style>
     .text-violet { color: #916aff; }
-    .border-violet { border: 2px solid #916aff; }
+    .border-violet { border: 2px solid #916aff; border-radius: 0.5rem;}
     .bg-violet { background-color: #916aff; }
     .bg-light-violet { background-color: rgba(145, 106, 255, 0.1); }
     .btn-outline-violet { 
@@ -89,6 +89,12 @@
     }
     .hover-scale:hover {
         transform: translateY(-5px);
+    }
+    h3 {
+        color: white;
+    }
+    p {
+        color: white;
     }
 </style>
 {% endblock %}
