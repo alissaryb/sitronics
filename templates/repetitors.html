@@ -1,92 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/static/media/logo.png">
-    <title></title>
+{% extends 'base.html' %}
+{% block main_content %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-          crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+    .text-violet { color: #916aff; }
+    .border-violet { border: 2px solid #916aff; border-radius: 0.8rem;}
+    .bg-violet { background-color: #916aff; }
+    .bg-light-violet { background-color: rgba(145, 106, 255, 0.1); }
+    .btn-outline-violet {
+        border: 2px solid #916aff;
+        color: #916aff;
+    }
+    .btn-outline-violet:hover {
+        background-color: #916aff;
+        color: white;
+    }
+    .hover-scale {
+        transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+        transform: translateY(-5px);
+    }
+    h3 {
+        color: white;
+    }
+    p {
+        color: white;
+    }
+</style>
 
-    <script src="/static/js/connect_styles.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-    <script src="/static/js/theme.js"></script>
-
-    <style>
-        .nav-link {
-            color: white;
-        }
-
-        .nav-link:hover {
-            color: #bcb1d7;
-        }
-
-
-        .nav-item.active .nav-link {
-            color: #a070ff;
-        }
-    </style>
-
-</head>
-<body>
-    <nav class="navbar navbar-expand-md my-nav py-3 px-5">
-    <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
-        <!-- <img src="/static/media/logo.png" width="37" height="50" class="bi me-2"> -->
-        <span class="text-logo"><a href="/" style="color: #a070ff">Men</a></span>
-    </span>
-
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-
-            <li class="nav-item">
-                <a class="nav-link" href="/">Главная</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Образование
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <li><a class="dropdown-item" href="/courses">Курсы</a></li>
-                    <li><a class="dropdown-item" href="/map">Карта</a></li>
-                    <li><a class="dropdown-item" href="/repetitors">Репетиторы</a></li>
-                </ul>
-            </li>
-
-        </ul>
-        {% if 1 %}
-            <div class="text-end d-none d-lg-block py-2">
-                <a href="/login" class="btn btn-violet">Вход</a>
-                <a href="/register" class="btn btn-violet">Регистрация</a>
-            </div>
-            <div class="text d-lg-none py-2">
-                <a href="/login" class="btn btn-violet">Вход</a>
-                <a href="/register" class="btn btn-violet">Регистрация</a>
-            </div>
-        {% else %}
-            <div class="text-end d-none d-lg-block py-2">
-                <a href="/logout" class="btn btn-red btn">Выйти</a>
-            </div>
-            <div class="text d-lg-none py-2">
-                <a href="/logout" class="btn btn-red btn">Выйти</a>
-            </div>
-        {% endif %}
-
-    </div>
-</nav>
     <div class="container mt-5">
         <h1 class="text-center mb-4" style="color:white">Поиск репетиторов</h1>
         
@@ -103,16 +44,16 @@
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="courses-container">
         {%for t in teacher:%}
             <div class="col-md-4">
-                <div class="card teacher-card">
+                <div class="card teacher-card border-violet">
                     <div class="card-body">
                         <h5 class="card-title" style="color:white">{{t['name']}}</h5>
                         <p style="color:white"><strong>Почта:</strong> {{t['mail']}}</p>
-                        <a href="/repetitor/{{t['id']}}" class="btn btn-primary">Перейти в личный кабинет</a>
+                        <a href="/repetitor/{{t['id']}}" class="btn btn-violet">Перейти в личный кабинет</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
         </div>
     </div>
-</body>
-</html>
+
+{% endblock %}

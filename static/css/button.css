@@ -32,10 +32,10 @@
 }
 
 .btn-violet {
-    background: rgb(133, 114, 225);
+    background: var(--purple-primary);
     color: white;
 }
 .btn-violet:hover {
-    background: rgb(145, 131, 211);
+    background: var(--purple-active);
     color: white;
 }
