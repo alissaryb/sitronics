@@ -36,8 +36,13 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ teacher.name }}</h5>
                         <p class="card-text"><strong>Возраст:</strong> {{ teacher.age }} лет</p>
+                        <p class="card-text"><strong>Почта:</strong> {{ teacher.mail }} лет</p>
                         <p class="card-text"><strong>Место обучения:</strong> {{ teacher.education }}</p>
-                        <p class="card-text"><strong>Высшее образование:</strong> ✅ </p>
+                        {% if {{ teacher.coll_deg }} == 0 %}
+                            <p class="card-text"><strong>Высшее образование:</strong> ❌ </p>
+                        {% else %}
+                            <p class="card-text"><strong>Высшее образование:</strong> ✅ </p>
+                        {% endif %}
                         <h6 class="card-subtitle mb-2 custom-text-info">Процесс подтверждения качества преподавателя:</h6>
                         <ul class="confirmation-list">
                             <li>Проведение открытых уроков.</li>
