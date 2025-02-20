@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect
 from random import choice
+from geo import get_coordinates
 
 app = Flask(__name__)
 
@@ -14,6 +15,16 @@ def get_organization():
     set_organizations = set([course["organization"] for course in courses])
     all_organizations = list(set_organizations)
     return all_organizations
+
+def get_info_map():
+    cities = []
+    for i in get_courses():
+        sl = {}
+        sl['id'] = i['id']
+        sl['name_course'] = i['name_course']
+        sl['coords'] = get_coordinates(i['address'])
+        cities.append(sl)
+    return cities
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -31,7 +42,13 @@ def courses():
 
 @app.route('/map', methods=['GET', 'POST'])
 def map():
-    return render_template("map.html", title="")
+    cities = get_info_map()
+    return render_template("map.html", title="", cities=cities)
+
+@app.route('/page_course/<id>', methods=['GET', 'POST'])
+def page_course():
+
+    return render_template("page_course.html", title="")
 
 @app.route('/check')
 def check():

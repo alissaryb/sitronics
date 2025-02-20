@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block main_content %}
 
-</body>
-</html>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 500px; /* Высота карты уменьшена */
+            border: 2px solid #3a3f44; /* Обводка вокруг карты */
+            border-radius: 5px; /* Скругление углов */
+            margin: 20px; /* Отступ вокруг карты */
+        }
+    </style>
+
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Инициализация карты
+        var map = L.map('map').setView([60.0, 100.0], 3); // Центр России
+
+        // Добавление слоя карты
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Список городов и их координаты
+        var cities = {{ cities | tojson }};
+
+        // Добавление маркеров для каждого города
+        cities.forEach(function(city) {
+            var marker = L.marker(city.coords).addTo(map);
+            marker.bindPopup(`<b>${city.name}</b><br><a href="/page_course/${city.id}">Информация о курсе</a>`);
+        });
+    </script>
+
+
+{% endblock %}
