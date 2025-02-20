@@ -30,15 +30,15 @@
         <div class="card">
             <div class="row g-0">
                 <div class="col-md-4 d-flex justify-content-center align-items-center"> <!-- Flexbox для центрирования -->
-                    <img src="{{ teacher.photo }}" class="img-fluid rounded-start p-3" alt="Фотография преподавателя"> <!-- Добавлен отступ -->
+                    <img src="{{ teacher['photo'] }}" class="img-fluid rounded-start p-3" alt="Фотография преподавателя"> <!-- Добавлен отступ -->
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">{{ teacher.name }}</h5>
-                        <p class="card-text"><strong>Возраст:</strong> {{ teacher.age }} лет</p>
-                        <p class="card-text"><strong>Почта:</strong> {{ teacher.mail }} лет</p>
-                        <p class="card-text"><strong>Место обучения:</strong> {{ teacher.education }}</p>
-                        {% if {{ teacher.coll_deg }} == 0 %}
+                        <h5 class="card-title">{{ teacher['name'] }}</h5>
+                        <p class="card-text"><strong>Возраст:</strong> {{ teacher['age'] }} лет</p>
+                        <p class="card-text"><strong>Почта:</strong> {{ teacher['mail'] }} лет</p>
+                        <p class="card-text"><strong>Место обучения:</strong> {{ teacher['education'] }}</p>
+                        {% if teacher['coll_deg'] == 0 %}
                             <p class="card-text"><strong>Высшее образование:</strong> ❌ </p>
                         {% else %}
                             <p class="card-text"><strong>Высшее образование:</strong> ✅ </p>

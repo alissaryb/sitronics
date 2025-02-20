@@ -12,6 +12,14 @@ def get_courses():
 def get_teachers():
     return {0 : {"name" : "Алиса", "surname" : "Рыбакова", "patronymic" : "Ивановна"}, 1 : {"name" : "Михаил", "surname" : "Лавренов", "patronymic" : "Иванович"}}
 
+def get_teachers():
+    return [
+    {"id" : 0, "name" : "Бернштейн Лев Евгеньевич", "age" : 45, "education": "НИУ ВШЭ", "coll_deg" : 1, "mail" : "bernshtein@mail.ru"},
+    {"id" : 1, "name" : "Рыбакова Алиса Сергеевна", "age" : 52, "education": "Синергия", "coll_deg" : 0, "mail" : "alisa@mail.ru"  },
+    {"id" : 2, "name" : "Брусенцев Александр Петрович", "age" : 69, "education": "МФТИ", "coll_deg" : 1, "mail" : "brusntsev@mail.ru"  },
+    {"id" : 3, "name" : "Амирханян Михаил Александрович", "age" : 28, "education": "МГУ", "coll_deg" : 0, "mail" : "amirihan@mail.ru"   }
+    ]
+
 def get_organization():
     courses = get_courses()
     set_organizations = set([course["organization"] for course in courses])
@@ -97,13 +105,14 @@ def register():
 
 @app.route('/repetitors')
 def repetitors():
-    teacher = [
-    {"id" : 0, "name" : "Бернштейн Лев Евгеньевич", "age" : 45, "education": "НИУ ВШЭ", "coll_deg" : 1, "mail" : "bernshtein@mail.ru"},
-    {"id" : 1, "name" : "Рыбакова Алиса Сергеевна", "age" : 52, "education": "Синергия", "coll_deg" : 0, "mail" : "alisa@mail.ru"  },
-    {"id" : 2, "name" : "Брусенцев Александр Петрович", "age" : 69, "education": "МФТИ", "coll_deg" : 1, "mail" : "brusntsev@mail.ru"  },
-    {"id" : 3, "name" : "Амирханян Михаил Александрович", "age" : 28, "education": "МГУ", "coll_deg" : 0, "mail" : "amirihan@mail.ru"   }
-    ]
+    teacher = get_teachers()
     return render_template('repetitors.html', teacher=teacher)
+
+@app.route('/repetitor/<rep_id>')
+def repetitor(rep_id):
+    teachers = get_teachers()
+    teacher = teachers[int(rep_id)]
+    return render_template('check.html', teacher=teacher)
 
 
 if __name__ == "__main__":
