@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/media/logo.png">
+    <title></title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+          crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <script src="/static/js/connect_styles.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="/static/js/theme.js"></script>
+<style>
+    :root {
+        --purple-primary: #8a2be2;
+        --card-bg: rgb(32, 32, 32);
+        --dark-bg: #3d3c41;
+        --input-bg: #2d2d2d;
+        --text-light: #f5f5f5;
+        --text-dark: #2d2d2d; /* Для улучшенной видимости текста */
+        --text-grey: #c4c4c4;
+        --purple-active:#7a1db6;
+    }
+
+    body {
+        background: var(--dark-bg);
+        color: var(--text-light);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-header {
+        background: rgba(26, 26, 26, 0.95) !important;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .nav-header.scrolled {
+        background: rgba(18, 18, 18, 0.98) !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .brand-logo {
+        width: 40px;
+        transition: transform 0.3s ease;
+    }
+
+    .brand-logo:hover {
+        transform: rotate(15deg);
+    }
+
+    .form-section {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUp 0.8s forwards 0.3s;
+    }
+
+    @keyframes slideUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-control {
+        background: var(--input-bg);
+        border: 1px solid #3d3d3d;
+        color: var(--text-light) !important; /* Улучшенный цвет текста */
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--purple-primary);
+        box-shadow: 0 0 0 3px rgba(138,43,226,0.25);
+        color: var(--text-dark) !important; /* Цвет текста при фокусе */
+    }
+
+    .form-control::placeholder {
+        color: var(--text-light); /* Цвет плейсхолдера по умолчанию */
+        opacity: 1; /* Убираем прозрачность */
+    }
+
+    .form-control:focus::placeholder {
+        color: var(--text-dark); /* Цвет плейсхолдера при фокусе */
+    }
+
+        /* Создать аккаунт */
+    .btn-purple {
+        background: var(--purple-primary);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        transform: translateZ(0);
+        border: none;
+    }
+    .btn-purple::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #7a1db6;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+        border-radius: 0.5rem;
+    }
+    .btn-purple:hover {
+        background: #7a1db6;
+        /* box-shadow: 0 5px 15px rgba(138,43,226,0.4); */
+    }
+    .btn-purple:hover::before {
+        opacity: 1;
+    }
+    .btn-purple:active {
+        transform: scale(0.96) translateZ(0);
+        transition-duration: 0.1s;
+    }
+    .password-mismatch {
+        border-color: #dc3545 !important;
+        animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+    }
+
+    footer {
+        margin-top: auto;
+        border-top: 1px solid var(--text-dark);
+    }
+    .footer-links {
+        color: var(--text-grey);
+        /*text-decoration: none;*/
+    }
+    .card-dark {
+        background: var(--card-bg);
+        color: var(--text-light);
+        border: none;
+        border-radius: 25px;
+        padding: 15px 30px;
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .nav-link {
+        color: white;
+    }
+
+    .nav-link:hover {
+        color: #bcb1d7;
+    }
+
+
+    .nav-item.active .nav-link {
+        color: #a070ff;
+    }
+</style>
+</head>
+<body>
+<!-- Header -->
+<nav class="navbar navbar-expand-md my-nav py-3 px-5">
+    <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
+        <!-- <img src="/static/media/logo.png" width="37" height="50" class="bi me-2"> -->
+        <span class="text-logo"><a href="/" style="color: #a070ff">Men</a></span>
+    </span>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/">Главная</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Образование
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    <li><a class="dropdown-item" href="/courses">Курсы</a></li>
+                    <li><a class="dropdown-item" href="/">Репетиторы</a></li>
+                </ul>
+            </li>
+
+        </ul>
+        {% if 1 %}
+            <div class="text-end d-none d-lg-block py-2">
+                <a href="/login" class="btn btn-violet">Вход</a>
+                <a href="/register" class="btn btn-violet">Регистрация</a>
+            </div>
+            <div class="text d-lg-none py-2">
+                <a href="/login" class="btn btn-violet">Вход</a>
+                <a href="/register" class="btn btn-violet">Регистрация</a>
+            </div>
+        {% else %}
+            <div class="text-end d-none d-lg-block py-2">
+                <a href="/logout" class="btn btn-red btn">Выйти</a>
+            </div>
+            <div class="text d-lg-none py-2">
+                <a href="/logout" class="btn btn-red btn">Выйти</a>
+            </div>
+        {% endif %}
+
+    </div>
+</nav>
+
+
+<!-- Main Content -->
+<main class="container my-5 pt-5">
+    <div class="row justify-content-center form-section">
+        <div class="col-lg-6 mb-5">
+            <h1 class="display-4 mb-4">Добро пожаловать в Phantom</h1>
+            <p class="lead">Зарегистрируйтесь, чтобы получить доступ:</p>
+            <ul class="list-unstyled">
+                <li class="mb-3">🎁 Персональные скидки</li>
+                <li class="mb-3">🚀 Быстрый заказ</li>
+                <li class="mb-3">💎 Эксклюзивные предложения</li>
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <div>
+                <div class="card-body p-5">
+                    <h2 style="text-align: center;">Регистрация</h2>
+                    <form id="registrationForm">
+                        <div class="mb-4">
+                            <input type="text" class="form-control form-control-lg" placeholder="ФИО" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" class="form-control form-control-lg" placeholder="Логин" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" class="form-control form-control-lg" placeholder="Email" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="password" class="form-control form-control-lg" id="password" placeholder="Пароль" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="password" class="form-control form-control-lg" id="confirmPassword" placeholder="Повторите пароль" required>
+                            <div class="invalid-feedback" id="passwordError">Пароли не совпадают!</div>
+                        </div>
+                        <button type="submit" class="btn btn-purple w-100 mt-3">Создать аккаунт</button>
+                        <div class="text-center mt-3">
+                            <a href="#">Уже есть аккаунт? Войти</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="py-4">
+    <div class="container text-center">
+        <div class="justify-content-center mb-2">
+            <a href="#" class="footer-links me-3">О компании</a>
+            <a href="#" class="footer-links me-3">Контакты</a>
+            <a href="#" class="footer-links">Партнерам</a>
+        </div>
+        <p class="footer-links mb-0">© 2024 Phantom Store. Все права защищены</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Парольная проверка
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const form = document.getElementById('registrationForm');
+    const passwordError = document.getElementById('passwordError');
+
+    confirmPassword.addEventListener('input', function() {
+        if (password.value !== confirmPassword.value) {
+            confirmPassword.classList.add('password-mismatch');
+            passwordError.style.display = 'block';
+        } else {
+            confirmPassword.classList.remove('password-mismatch');
+            passwordError.style.display = 'none';
+        }
+    });
+
+    // Проверка ФИО
+    const fullNameInput = form.querySelector('input[placeholder="ФИО"]');
+    fullNameInput.addEventListener('input', function() {
+        const nameParts = fullNameInput.value.trim().split(' ');
+        if (nameParts.length < 2) {
+            fullNameInput.setCustomValidity("Введите минимум 2 слова");
+        } else {
+            fullNameInput.setCustomValidity("");
+        }
+    });
+
+    // Проверка email
+    const emailInput = form.querySelector('input[placeholder="Email"]');
+    emailInput.addEventListener('input', function() {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailInput.value)) {
+            emailInput.setCustomValidity("Введите корректный email");
+        } else {
+            emailInput.setCustomValidity("");
+        }
+    });
+
+    // Проверка пароля
+    password.addEventListener('input', function() {
+        if (password.value.length < 8) {
+            password.setCustomValidity("Пароль должен содержать минимум 8 символов");
+        } else {
+            password.setCustomValidity("");
+        }
+    });
+
+    // Анимация хедера при скролле
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.nav-header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    document.querySelectorAll('.form-section').forEach((el) => {
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>
