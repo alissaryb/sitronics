@@ -1,47 +1,20 @@
 {% extends 'base.html' %}
 {% block main_content %}
 <div class="px-5 py-4">
+    <div class="filter-container tablo mt-5">
 
-    <div class="filter-container tablo mt-5" style="position: sticky; top: 7rem; overflow-y: auto;">
-        <h5>Фильтры</h5>
-
-        <!-- Фильтр по адресу -->
-        <div>
-            <h6>Фильтр по адресу:</h6>
-            <label><input type="radio" name="address" value="all" checked> Неважно</label><br>
-            <label><input type="radio" name="address" value="Онлайн"> Онлайн</label><br>
-            <label><input type="radio" name="address" value="Офлайн"> Офлайн</label>
-        </div>
-
-        <!-- Фильтр по организациям -->
-        <div>
-            <h6>Организации:</h6>
-            <select id="organization-filter">
-                <option value="all">Все</option>
-                {% for org in organizations %}
-                    <option value="{{ org }}">{{ org }}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <!-- Фильтр по цене -->
-        <div>
-            <h6>Цена:</h6>
-            <label>Минимальная: <input type="number" id="min-price" placeholder="0"></label><br>
-            <label>Максимальная: <input type="number" id="max-price" placeholder="10000"></label>
-        </div>
-
-        <!-- Фильтр по рейтингу -->
-        <div>
-            <h6>Рейтинг:</h6>
-            <label>Минимальный: <input type="number" id="min-rank" placeholder="0"></label><br>
-            <label>Максимальный: <input type="number" id="max-rank" placeholder="10"></label>
-        </div>
+        <label for="organizationFilter">Фильтр по организации:</label>
+        <select id="organizationFilter" onchange="filterTasks()">
+            <option value="all">Все</option>
+            {% for org in organizations %}
+                <option value="{{ org }}">{{ org }}</option>
+            {% endfor %}
+        </select>
     </div>
 
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="courses-container">
     {% for i in courses %}
-        <div class="col d-flex course-item">
+        <div class="col d-flex course-item" data-organization="{{ i['organization'] }}" data-type="{{ i['type'] }}">
             <div class="card-body d-flex flex-column p-4">
                 <h4 style="color: white">{{ i['name_course'] }} </h4>
                 <hr>
@@ -62,46 +35,5 @@
 </div>
 
 <script>
-    // Функция фильтрации
-    function filterCourses() {
-        const addressFilter = document.querySelector('input[name="address"]:checked').value;
-        const organizationFilter = document.getElementById('organization-filter').value;
-        const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
-        const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
-        const minRank = parseFloat(document.getElementById('min-rank').value) || 0;
-        const maxRank = parseFloat(document.getElementById('max-rank').value) || Infinity;
 
-        const courses = document.querySelectorAll('.course-item');
-
-        courses.forEach(course => {
-            const address = course.querySelector('.w-text:nth-child(5)').textContent.trim();
-            const organization = course.querySelector('.w-text:nth-child(3)').textContent.trim().split(': ')[1];
-            const price = parseFloat(course.querySelector('.w-text:nth-child(6)').textContent.replace('Цена ', '').trim());
-            const rank = parseFloat(course.querySelector('.w-text:nth-child(7)').textContent.replace('Рейтинг ', '').trim());
-
-            let addressMatch = (addressFilter === 'all') || (address === addressFilter);
-            let organizationMatch = (organizationFilter === 'all') || (organization === organizationFilter);
-            let priceMatch = (price >= minPrice && price <= maxPrice);
-            let rankMatch = (rank >= minRank && rank <= maxRank);
-
-            // Показываем или скрываем курс в зависимости от фильтров
-            if (addressMatch && organizationMatch && priceMatch && rankMatch) {
-                course.style.display = 'flex';
-            } else {
-                course.style.display = 'none';
-            }
-        });
-    }
-
-    // Добавление обработчиков событий
-    document.querySelectorAll('input[name="address"]').forEach(input => {
-        input.addEventListener('change', filterCourses);
-    });
-    document.getElementById('organization-filter').addEventListener('change', filterCourses);
-    document.getElementById('min-price').addEventListener('input', filterCourses);
-    document.getElementById('max-price').addEventListener('input', filterCourses);
-    document.getElementById('min-rank').addEventListener('input', filterCourses);
-    document.getElementById('max-rank').addEventListener('input', filterCourses);
-</script>
-
-{% endblock %}
+<script>
