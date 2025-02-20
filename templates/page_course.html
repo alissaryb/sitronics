@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block main_content %}
+
+ <style>
+        body {
+            color: #ffffff; /* Белый цвет текста по умолчанию */
+        }
+
+        .nav-link {
+            color: white;
+        }
+
+        .nav-link:hover {
+            color: #bcb1d7;
+        }
+
+        .nav-item.active .nav-link {
+            color: #a070ff;
+        }
+
+        .course-details {
+            background-color: #28282a; /* Темный фон для блока с информацией */
+            border: 1px solid #444; /* Умеренный цвет границы */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-details p {
+            color: #ffffff; /* Белый цвет текста в блоке с информацией */
+        }
+
+        h2, h5 {
+            color: #a070ff; /* Цвет заголовков */
+        }
+    </style>
+
+
+<div class="container my-5">
+    <h2 class="text-center">{{ cour['name_course']}} {% if verified %} ✅{% endif %}</h2>
+    <div class="course-details my-4">
+        <h5>Информация о курсе</h5>
+        <p><strong>Преподаватель: </strong>{{teach['name']}} {{teach['surname']}}</p>
+        <p><strong>Организатор: </strong> {{ cour['organization'] }}</p>
+        <p><strong>Формат:</strong> Онлайн</p>
+        <p><strong>Тип:</strong> Индивидуальный</p>
+        <p><strong>Время:</strong> {{ cour['date_day'] }}, {{ cour['time_start'] }} - {{ cour['time_end'] }}</p>
+        <p><strong>Цена:</strong> {{ cour['price'] }} руб.</p>
+
+    </div>
+    <h5>Описание курса</h5>
+    <p>
+        На этом курсе мы будем готовить вареники с различными начинками. Вы научитесь замешивать тесто,
+        лепить вареники и готовить их на пару или варить. Этот курс идеально подходит для начинающих и
+        тех, кто хочет улучшить свои кулинарные навыки.
+    </p>
+    <a href="/feedback" class="btn btn-violet">Посмотреть отзывы</a>
+</div>
+
+{% endblock %}
