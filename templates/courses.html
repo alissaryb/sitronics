@@ -3,31 +3,99 @@
 <div class="px-5 py-4">
 
     <div class="filter-container tablo mt-5" style="position: sticky; top: 7rem; overflow-y: auto;">
+        <h5>Фильтры</h5>
 
+        <!-- Address Filter -->
+        <div>
+            <h6>Фильтр по адресу</h6>
+            <label><input type="radio" name="address" value="all" checked> Неважно</label>
+            <label><input type="radio" name="address" value="online"> Онлайн</label>
+            <label><input type="radio" name="address" value="offline"> Офлайн</label>
+        </div>
+
+        <!-- Organization Filter -->
+        <div>
+            <h6>Фильтр по организациям</h6>
+            <select id="organizationFilter">
+                <option value="all">Все</option>
+                {% for org in organizations %}
+                    <option value="{{ org }}">{{ org }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Price Filter -->
+        <div>
+            <h6>Фильтр по цене</h6>
+            <input type="number" id="minPrice" placeholder="Минимальная цена">
+            <input type="number" id="maxPrice" placeholder="Максимальная цена">
+        </div>
+
+        <!-- Rank Filter -->
+        <div>
+            <h6>Фильтр по рейтингу</h6>
+            <input type="number" id="minRank" placeholder="Минимальный рейтинг">
+            <input type="number" id="maxRank" placeholder="Максимальный рейтинг">
+        </div>
+
+        <button id="filterButton">Применить фильтры</button>
     </div>
 
-
-
-    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-    {% for i in courses %}
-        <div class="col d-flex">
-            <!--<div class="card flex-fill">-->
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="courseList">
+        {% for i in courses %}
+            <div class="col d-flex course-item"
+                 data-address="{{ i['address'] }}"
+                 data-organization="{{ i['organization'] }}"
+                 data-price="{{ i['price'] }}"
+                 data-rank="{{ i['rank'] }}">
                 <div class="card-body d-flex flex-column p-4">
-                    <h4 style="color: white">{{ i['name_course'] }}</h4>
+                    <h4 style="color: white">{{ i['name_course'] }} </h4>
                     <hr>
-                    <div class="w-text">Организатор: {{ i['institutions'] }}</div>
+                    <div class="w-text">Организатор: {{ i['organization'] }}</div>
                     <div class="w-text">Время {{ i['time_start'] }} {{ i['time_end'] }}</div>
+                    <div class="w-text">Учитель <a href="#">{{ i['id_teacher'] }}</a></div>
+                    <div class="w-text">{{ i['address'] }}</div>
+                    <div class="w-text">Цена {{ i['price'] }}</div>
+                    <div class="w-text">Рейтинг {{ i['rank'] }}</div>
                     <br>
-
                     <div class="mt-auto">
                         <a href="#" class="btn btn-violet">Перейти</a>
                     </div>
                 </div>
-
-        </div>
-
-    {% endfor %}
+            </div>
+        {% endfor %}
     </div>
 </div>
+
+<script>
+    document.getElementById('filterButton').addEventListener('click', function() {
+        const addressFilter = document.querySelector('input[name="address"]:checked').value;
+        const organizationFilter = document.getElementById('organizationFilter').value;
+        const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+        const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+        const minRank = parseFloat(document.getElementById('minRank').value) || 0;
+        const maxRank = parseFloat(document.getElementById('maxRank').value) || Infinity;
+
+        const courses = document.querySelectorAll('.course-item');
+
+        courses.forEach(course => {
+            const address = course.getAttribute('data-address');
+            const organization = course.getAttribute('data-organization');
+            const price = parseFloat(course.getAttribute('data-price'));
+            const rank = parseFloat(course.getAttribute('data-rank'));
+
+            let addressMatch = (addressFilter === 'all') || (address === addressFilter);
+            let organizationMatch = (organizationFilter === 'all') || (organization === organizationFilter);
+            let priceMatch = (price >= minPrice && price <= maxPrice);
+            let rankMatch = (rank >= minRank && rank <= maxRank);
+
+            if (addressMatch && organizationMatch && priceMatch && rankMatch) {
+                course.style.display = 'flex';
+            } else {
+                course.style.display = 'none';
+            }
+        });
+    });
+</script>
 
 {% endblock %}

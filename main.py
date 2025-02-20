@@ -19,7 +19,7 @@ def index():
 def cards():
     return render_template("cards.html", title="")
 
-@app.route('/cards', methods=['GET', 'POST'])
+@app.route('/map', methods=['GET', 'POST'])
 def cards():
     return render_template("map.html", title="")
 
