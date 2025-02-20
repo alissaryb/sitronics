@@ -1,5 +1,94 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block main_content %}
+<!-- Hero Section -->
+<section class="container my-5 py-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-4">Образовательная платформа <span class="text-violet">Men</span></h1>
+            <p class="lead mb-4">Ваш универсальный гид в мире образования и карьеры</p>
+            <div class="d-grid gap-3 d-md-flex">
+                <a href="/courses" class="btn btn-violet btn-lg px-4 me-md-2">Начать обучение</a>
+                <a href="/map" class="btn btn-outline-violet btn-lg px-4">Построить карту</a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <section class="container my-3 py-4 text-center">
+                <div class="bg-violet p-3 rounded-4 shadow">
+                    <h2 class="text-white mb-3">Начните свой образовательный путь сегодня!</h2>
+                    <p class="text-white mb-3">Присоединяйтесь к сообществу из 500,000+ учащихся</p>
+                    <a href="/register" class="btn btn-light btn-lg px-5">Бесплатная регистрация</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
 
+<!-- Categories Grid -->
+<section class="container my-5 py-5">
+    <h2 class="text-center mb-5">Направления развития</h2>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-violet hover-scale">
+                <div class="card-body text-center">
+                    <i class="bi bi-book fs-1 text-violet mb-3"></i>
+                    <h3>Курсы</h3>
+                    <p>Более 500 онлайн-курсов по различным направлениям</p>
+                    <a href="/courses" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-violet hover-scale">
+                <div class="card-body text-center">
+                    <i class="bi bi-building fs-1 text-violet mb-3"></i>
+                    <h3>Университеты</h3>
+                    <p>База вузов с рейтингами и программами обучения</p>
+                    <a href="/universities" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-violet hover-scale">
+                <div class="card-body text-center">
+                    <i class="bi bi-people fs-1 text-violet mb-3"></i>
+                    <h3>Репетиторы</h3>
+                    <p>Персональные занятия с опытными преподавателями</p>
+                    <a href="/repetitors" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 border-violet hover-scale">
+                <div class="card-body text-center">
+                    <i class="bi bi-briefcase fs-1 text-violet mb-3"></i>
+                    <h3>Стажировки</h3>
+                    <p>Возможности для профессионального роста</p>
+                    <a href="/internships" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<style>
+    .text-violet { color: #916aff; }
+    .border-violet { border: 2px solid #916aff; }
+    .bg-violet { background-color: #916aff; }
+    .bg-light-violet { background-color: rgba(145, 106, 255, 0.1); }
+    .btn-outline-violet { 
+        border: 2px solid #916aff;
+        color: #916aff;
+    }
+    .btn-outline-violet:hover {
+        background-color: #916aff;
+        color: white;
+    }
+    .hover-scale {
+        transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+        transform: translateY(-5px);
+    }
+</style>
 {% endblock %}
