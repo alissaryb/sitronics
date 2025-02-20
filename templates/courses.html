@@ -1,9 +1,105 @@
 {% extends 'base.html' %}
 {% block main_content %}
 <div class="px-5 py-4">
-    <div class="filter-container tablo mt-5">
+
+
+<style>
+
+.filter-container {
+    transition: background-color 0.3s; /* Плавный переход для фона */
+}
+
+.filter-container:hover {
+    background-color: #495057; /* Изменение фона при наведении */
+}
+
+
+.form-check-input:checked {
+    background-color: #6c5ce7; /* Цвет для радиокнопок (фиолетовый) */
+}
+
+.form-control {
+    transition: background-color 0.3s; /* Плавный переход для полей ввода */
+}
+
+.form-control:focus {
+    background-color: #6c5ce7; /* Цвет поля ввода при фокусе (фиолетовый) */
+    color: white; /* Цвет текста при фокусе */
+    border: 1px solid #5c4d9e; /* Цвет рамки при фокусе (темно-фиолетовый) */
+}
+
+    </style>
+
+<div class="tablo mt-5" style="background-color: #2d2d2f; color: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+    <h5 class="text-center">Фильтры</h5>
+    <hr class="bg-light">
+
+    <div class="row">
+        <div class="col-6">
+            <h6>Фильтр по адресу</h6>
+        </div>
+        <div class="col-6">
+            <h6>Фильтр по организациям</h6>
+        </div>
+
+     </div>
+
+    <div class="row">
+        <div class="col-6">
+        <div class="mb-3">
+            <label class="me-2">
+                <input type="radio" name="address" value="all" checked onclick="filterCourses()" class="form-check-input"> Неважно
+            </label>
+            <label class="me-2">
+                <input type="radio" name="address" value="онлайн" onclick="filterCourses()" class="form-check-input"> Онлайн
+            </label>
+            <label class="me-2">
+                <input type="radio" name="address" value="офлайн" onclick="filterCourses()" class="form-check-input"> Офлайн
+            </label>
+        </div>
+            </div>
+
+        <div class="col-6">
+        <select id="organizationFilter" class="form-select mb-3" onchange="filterCourses()" style="background-color: #ffffff; color: var(--text-dark); border: none;">
+            <option value="all">Все</option>
+            {% for org in organizations %}
+                <option value="{{ org }}">{{ org }}</option>
+            {% endfor %}
+        </select>
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col-6">
+            <h6>Минимальная и максимальная цена</h6>
+        </div>
+        <div class="col-6">
+            <h6>Минимальный рейтинг</h6>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-6">
+        <div class="input-group mb-3">
+            <input type="number" id="minPrice" class="form-control" placeholder="Минимальная цена" oninput="filterCourses()" style="background-color: #ffffff; color: var(--text-dark); border: none; margin-right: 3px">
+
+            <input type="number" id="maxPrice" class="form-control" placeholder="Максимальная цена" oninput="filterCourses()" style="background-color: #ffffff; color: var(--text-dark); border: none;  margin-left: 3px">
+        </div>
+        </div>
+
+        <div class="col-6">
+        <input type="number" id="minRank" class="form-control mb-3" placeholder="Минимальный рейтинг" oninput="filterCourses()" style="background-color: #ffffff; color: var(--text-dark); border: none;">
+
+        </div>
+
+    </div>
+
+
+</div>
+
+    <br>
+    <br>
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" id="courses-container">
     {% for i in courses %}
         <div class="col d-flex course-item" data-organization="{{ i['organization'] }}" data-type="{{ i['type'] }}">
