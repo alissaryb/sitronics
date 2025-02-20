@@ -1,3 +1,15 @@
+:root {
+        --purple-primary: #8a2be2;
+        --card-bg: rgb(32, 32, 32);
+        --dark-bg: #1a1a1a;
+        --input-bg: #2d2d2d;
+        --text-light: #f5f5f5;
+        --text-dark: #2d2d2d; /* Для улучшенной видимости текста */
+        --text-grey: #c4c4c4;
+        --purple-active:#7a1db6;
+    }
+
+
 .dropdown-item {
     color: white;
 }
@@ -7,7 +19,7 @@
 }
 
 .dropdown-item:hover {
-    background-color: #5b5672;
+    background-color: red;
     color: #ffffff;
 }
 
@@ -22,7 +34,7 @@
 }
 
 .my-nav {
-    background-color: #444348;
+    background-color: var(--text-dark);
     position: fixed;
     top: 0;
     left: 0;

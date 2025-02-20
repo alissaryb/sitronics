@@ -1,3 +1,14 @@
+:root {
+        --purple-primary: #8a2be2;
+        --card-bg: rgb(32, 32, 32);
+        --dark-bg: #1a1a1a;
+        --input-bg: #2d2d2d;
+        --text-light: #f5f5f5;
+        --text-dark: #2d2d2d; /* Для улучшенной видимости текста */
+        --text-grey: #c4c4c4;
+        --purple-active:#7a1db6;
+    }
+
 
 .card-body {
     border: 1px solid #2b2b33;

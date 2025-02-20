@@ -1,25 +1,49 @@
 {% extends 'base.html' %}
 {% block main_content %}
+<style>
 
-  <style>
-        body {
-            color: #ffffff; /* Белый цвет текста по умолчанию */
+        .rating-bar {
+            margin-bottom: 20px;
         }
-
-        .course-details {
-            background-color: #1e1e1e; /* Темный фон для блока с информацией */
-            border: 1px solid #444; /* Умеренный цвет границы */
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        .review-example {
+            background-color: #4b4957;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
         }
-
-        .course-details p {
-            color: #ffffff; /* Белый цвет текста в блоке с информацией */
+        .star {
+            font-size: 24px;
+            cursor: pointer;
+            color: #ccc;
         }
-
-        h2, h5 {
-            color: #a070ff; /* Цвет заголовков */
+        .star.selected {
+            color: #ffcc00;
+        }
+        .form-control, .form-select {
+            background-color: #4a4957;
+            color: #ffffff;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #706c7d;
+            color: #ffffff;
+            border-color: #8082ff;
+        }
+        .average-rating {
+            display: inline-block; /* Изменено на inline-block */
+            height: 40px; /* Высота, равная высоте строки рейтинга */
+            font-size: 32px; /* Увеличенный шрифт для среднего рейтинга */
+            margin-left: 10px; /* Отступ слева для отделения от слова "Рейтинг" */
+            color: #ffcc00; /* Цвет по умолчанию */
+        }
+        .rating-row {
+            display: flex;
+            align-items: center;
+            height: 40px; /* Высота, равная высоте строки рейтинга */
+        }
+        .progress {
+            width: 66%; /* Установлено на 2/3 от изначального размера */
+            margin-left: 10px;
         }
     </style>
 
@@ -28,15 +52,13 @@
 
         <!-- Полоса с рейтингом -->
         <div class="rating-bar">
-            <h5>Рейтинг</h5>
             {% set total_score = (ratings[0] * 1 + ratings[1] * 2 + ratings[2] * 3 + ratings[3] * 4 + ratings[4] * 5) %}
             {% set total_reviews = ratings | sum %}
             {% set average_rating = (total_score / total_reviews) if total_reviews > 0 else 0 %}
-            <div class="average-rating">
-                <span>{{ average_rating | round(1) }}</span>
-            </div>
+            <h5>Рейтинг: <span class="average-rating" style="color: {{ 'bg-success' if average_rating >= 4 else 'bg-warning' if average_rating >= 3 else 'bg-danger' }}">{{ average_rating | round(1) }}</span></h5>
+
             {% for i in range(5) %}
-            <div class="progress-container">
+            <div class="rating-row">
                 <span>{{ 5 - i }} звёзд ({{ ratings[4 - i] }})</span>
                 <div class="progress">
                     <div class="progress-bar {{ ['bg-secondary', 'bg-danger', 'bg-warning', 'bg-info', 'bg-success'][i] }}" role="progressbar" style="width: {{ (ratings[4 - i] / total_reviews * 100) }}%;" aria-valuenow="{{ ratings[4 - i] }}" aria-valuemin="0" aria-valuemax="{{ total_reviews }}"></div>
@@ -61,11 +83,11 @@
             <label for="reviewText" class="form-label">Ваш отзыв:</label>
             <textarea class="form-control" id="reviewText" rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" id="submitReview">Отправить отзыв</button>
+        <button type="submit" class="btn btn-violet" id="submitReview">Отправить отзыв</button>
 
 
         <!-- Примеры отзывов -->
-        <h5 class="mt-4">Примеры отзывов</h5>
+        <h5 class="mt-4">Отзывы</h5>
         <div class="review-example">
             <strong>Отлично!</strong>
             <p>5 звёзд - Приложение просто супер! Все функции работают отлично, рекомендую всем!</p>
@@ -124,4 +146,5 @@
             }
         });
     </script>
+
 {% endblock %}
