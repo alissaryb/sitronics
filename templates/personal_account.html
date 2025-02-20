@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет ученика</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #343a40;
+            color: white;
+        }
+        .card {
+            background-color: #495057;
+            border: none;
+        }
+        h5, h6 {
+            color: #f8f9fa;
+        }
+        .custom-text-info {
+            color: #d1d1d1; /* Светло-серый цвет */
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #d1d1d1; /* Светло-серый ободок */
+        }
+        .activity-table {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <img src="path/to/student_photo.jpg" class="profile-image p-3" alt="Фотография ученика">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Иванов Иван Иванович</h5>
+                        <p class="card-text"><strong>Место обучения:</strong> Университет ИТ, Группа 101</p>
+                        <p class="card-text"><strong>Статус:</strong> Специалист-разработчик</p>
+                        <h6 class="card-subtitle mb-2 custom-text-info">Личное описание:</h6>
+                        <p class="card-text">Я увлечён разработкой программного обеспечения и постоянно стремлюсь улучшать свои навыки. Участвую в различных проектах и конкурсах.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 custom-text-info">Активность на сайте:</h6>
+                <table class="table table-dark activity-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Действие</th>
+                            <th scope="col">Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01.02.2025</td>
+                            <td>Завершил курс по Python</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>15.01.2025</td>
+                            <td>Принял участие в хакатоне</td>
+                            <td>🏆</td>
+                        </tr>
+                        <tr>
+                            <td>10.12.2024</td>
+                            <td>Опубликовал проект на GitHub</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>05.11.2024</td>
+                            <td>Получил сертификат по JavaScript</td>
+                            <td>✅</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
