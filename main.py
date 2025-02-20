@@ -24,7 +24,7 @@ def get_info_map():
         if i['type_online'] == 0:
             sl = {}
             sl['id'] = i['id']
-            sl['name_course'] = i['name_course']
+            sl['name'] = i['name_course']
             sl['coords'] = i['coords']
             cities.append(sl)
     return cities
