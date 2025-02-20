@@ -20,6 +20,9 @@ def get_teachers():
     {"id" : 3, "name" : "Амирханян Михаил Александрович", "age" : 28, "education": "МГУ", "coll_deg" : 0, "mail" : "amirihan@mail.ru"   }
     ]
 
+def get_companies():
+    return [{'name': 'Tech Innovations', 'post': 'Junior Developer', 'rank' : 'Кандитат в мастера'}, {'name': 'Code Wizard', 'post': 'Intern Software Engineer', 'rank' : 'Специалист'}, {'name': 'Data Solutions', 'post': 'Data Analyst Intern', 'rank' : 'Эксперт'}, {'name': 'AI Labs', 'post': 'Machine Learning Intern', 'rank' : 'Мастер'}, {'name': 'Web Creators', 'post': 'Frontend Developer Intern', 'rank' : 'Кандитат в мастера'}, {'name': 'Cyber Security Inc.', 'post': 'Security Analysis Intern', 'rank' : 'Эксперт'}]
+
 def get_organization():
     courses = get_courses()
     set_organizations = set([course["organization"] for course in courses])
@@ -123,7 +126,8 @@ def repetitor(rep_id):
 
 @app.route('/internships')
 def internship():
-    return render_template('internship.html')
+    companies = get_companies()
+    return render_template('internship.html' , companies=companies)
 
 
 if __name__ == "__main__":

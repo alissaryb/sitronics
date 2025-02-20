@@ -12,36 +12,13 @@
             </tr>
         </thead>
         <tbody>
+            {% for company in companies %}
             <tr>
-                <td>Tech Innovations</td>
-                <td>Junior Developer</td>
-                <td>Кандидат в мастера</td>
+                <td>{{company['name']}}</td>
+                <td>{{company['post']}}</td>
+                <td>{{company['rank']}}</td>
             </tr>
-            <tr>
-                <td>Code Wizards</td>
-                <td>Intern Software Engineer</td>
-                <td>Специалист</td>
-            </tr>
-            <tr>
-                <td>Data Solutions</td>
-                <td>Data Analyst Intern</td>
-                <td>Эксперт</td>
-            </tr>
-            <tr>
-                <td>AI Labs</td>
-                <td>Machine Learning Intern</td>
-                <td>Мастер</td>
-            </tr>
-            <tr>
-                <td>Web Creators</td>
-                <td>Frontend Developer Intern</td>
-                <td>Кандидат в мастера</td>
-            </tr>
-            <tr>
-                <td>Cyber Security Inc.</td>
-                <td>Security Analyst Intern</td>
-                <td>Эксперт</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </main>
