@@ -1,12 +1,16 @@
 from flask import Flask, render_template, redirect
+from random import choice
 
 app = Flask(__name__)
 
-courses = [{"id" : 0, "name_course" : "Вареники от алисой", "id_teacher" : 0, "address" : "Онлайн", "organization" : "МТС", "date_day" : "четверг", "time_start" : "10:00", "time_end" : "12:00", "price" : 300, "rank" : 9.5, "verified" : 1}, {"id" : 1, "name_course" : "Кулинарное кино", "id_teacher" : 1, "address" : "online", "organization" : "Sitronics", "date_day" : "пятница", "time_start" : "18:00", "time_end" : "20:00", "price" : 400, "rank" : 8.8, "verified" : 0}]
+def get_courses():
+    return [{"id" : 0, "name_course" : "Вареники от алисой", "id_teacher" : 0, "address" : "Онлайн", "organization" : "МТС", "date_day" : "четверг", "time_start" : "10:00", "time_end" : "12:00", "price" : 300, "rank" : 9.5, "verified" : 1}, {"id" : 1, "name_course" : "Кулинарное кино", "id_teacher" : 1, "address" : "online", "organization" : "Sitronics", "date_day" : "пятница", "time_start" : "18:00", "time_end" : "20:00", "price" : 400, "rank" : 8.8, "verified" : 0}]
 
-teachers = {0 : {"name" : "Алиса", "surname" : "Рыбакова", "patronymic" : "Ивановна"}, 1 : {"name" : "Михаил", "surname" : "Лавренов", "patronymic" : "Иванович"}}
+def get_teachers():
+    return {0 : {"name" : "Алиса", "surname" : "Рыбакова", "patronymic" : "Ивановна"}, 1 : {"name" : "Михаил", "surname" : "Лавренов", "patronymic" : "Иванович"}}
 
 def get_organization():
+    courses = get_courses()
     set_organizations = set([course["organization"] for course in courses])
     all_organizations = list(set_organizations)
     return all_organizations
@@ -19,8 +23,14 @@ def index():
 def cards():
     return render_template("cards.html", title="")
 
+@app.route('/courses', methods=['GET', 'POST'])
+def courses():
+    organizations = get_organization()
+    return render_template("courses.html", title="", courses=get_courses(), teachers=get_teachers(), organizations=organizations)
+
+
 @app.route('/map', methods=['GET', 'POST'])
-def cards():
+def map():
     return render_template("map.html", title="")
 
 @app.route('/check')
@@ -30,9 +40,9 @@ def check():
     ages = [30, 35, 40]
 
     teacher = {
-        'name': random.choice(names),
-        'age': random.choice(ages),
-        'education': random.choice(educations),
+        'name': choice(names),
+        'age': choice(ages),
+        'education': choice(educations),
         'photo': 'static/images/teacher.jpg',
         'confirmation_process': (
             "1. Проведение открытых уроков.\n"
