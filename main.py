@@ -114,6 +114,10 @@ def repetitor(rep_id):
     teacher = teachers[int(rep_id)]
     return render_template('check.html', teacher=teacher)
 
+@app.route('/internships')
+def internship():
+    return render_template('internship.html')
+
 
 if __name__ == "__main__":
     app.run(port=8080, host='127.0.0.1', threaded=True)
