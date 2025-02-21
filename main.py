@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, url_for, request
+import requests
 from random import choice
 
 app = Flask(__name__)
