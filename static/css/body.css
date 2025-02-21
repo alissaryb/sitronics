@@ -67,3 +67,19 @@ th {
 tr:hover {
     background-color: #555;
 }
+
+.master {
+    color: #ff0000;
+}
+
+.candidat {
+    color: #ff00ae;
+}
+
+.expert {
+    color: #8400ff;
+}
+
+.specialist {
+    color: #009dff;
+}

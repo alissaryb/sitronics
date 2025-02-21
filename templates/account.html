@@ -25,6 +25,9 @@
         color: white;
     }
 
+    div {
+        color: white;
+    }
 </style>
 
     <div class="container mt-5">
@@ -81,6 +84,113 @@
                 </table>
             </div>
         </div>
+
+        <br>
+
+        <style>
+
+    .vertical-bar {
+        width: 30px; /* Ширина вертикального столбика */
+        position: absolute; /* Позволяет свободно позиционировать */
+        right: 20px; /* Прикрепляет к правому краю */
+        top: 0; /* Начинает от верхнего края */
+        height: 100%; /* Растягивается на всю высоту карточки */
+        background: linear-gradient(to bottom, #ff0000, #ff00ae, #8400ff, #009dff); /* Градиент */
+    }
+
+</style>
+
+<div class="card">
+    <div class="card-body">
+        <div class="master" style="font-weight: bold">Мастер:</div>
+        <div class="master">Devops</div>
+        <br>
+
+        <div class="candidat" style="font-weight: bold">Кандидант в мастеры</div>
+        <div class="candidat">Вокал</div>
+        <br>
+
+        <div class="expert" style="font-weight: bold">Эксперт</div>
+        <div class="expert">Экология, Веб-разработка</div>
+        <br>
+
+        <div class="specialist" style="font-weight: bold">Специалист:</div>
+        <div class="specialist">AI-разработка</div>
+
+        <div class="vertical-bar"></div>
+    </div>
+</div>
+
+    <br>
+
+    <div class="card">
+    <div class="card-body">
+        <h5 class="text-center" style="color: white">Статистика </h5>
+        <canvas id="myChart" width="200"></canvas>
+    </div>
+    </div>
+
+    <script>
+
+        const values = [50, 73, 69, 52, 96, 57];
+
+        const labels = values.map((_, index) => index + 1);
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Баллы',
+                data: values,
+                fill: false,
+                borderColor: 'rgba(138,43,226,1)',
+                backgroundColor: 'rgba(138,43,226,1)',
+                tension: 0.1
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Баллы',
+                            color: 'white'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Номер работы',
+                            color: 'white'
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            displayColors: false,
+                            label: function (tooltipItem) {
+                                return `Баллы: ${tooltipItem.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+     <!-- Вертикальный столбик -->
+
     </div>
 
 {% endblock %}
