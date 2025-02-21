@@ -14,9 +14,17 @@
         <tbody>
             {% for company in companies %}
             <tr>
-                <td>{{company['name']}}</td>
+                <td><a href="{{company['link']}}", target="_blank", style="color:rgb(179, 179, 179)">{{company['name']}}</td>
                 <td>{{company['post']}}</td>
-                <td>{{company['rank']}}</td>
+                {% if company['rank'] == "Мастер"%}
+                <td class="master">{{company['rank']}}</td>
+                {% elif company['rank'] == "Кандитат в мастера" %}
+                <td class="candidat">{{company['rank']}}</td>
+                {% elif company['rank'] == "Эксперт" %}
+                <td class="expert">{{company['rank']}}</td>
+                {% else %}
+                <td class="specialist">{{company['rank']}}</td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>

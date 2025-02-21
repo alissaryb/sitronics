@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 {% block main_content %}
 
-
 <style>
+    .vertical-bar {
+        width: 30px; /* Ширина вертикального столбика */
+        position: absolute; /* Позволяет свободно позиционировать */
+        right: 20px; /* Прикрепляет к правому краю */
+        top: 0; /* Начинает от верхнего края */
+        height: 100%; /* Растягивается на всю высоту карточки */
+        background: linear-gradient(to bottom, #ff0000, #ff00ae, #8400ff, #009dff); /* Градиент */
+    }
 
     .custom-text-info {
         color: #d1d1d1; /* Светло-серый цвет */
@@ -30,98 +37,86 @@
     }
 </style>
 
-    <div class="container mt-5">
-        <div class="card">
-            <div class="row g-0">
-                <div class="col-md-4 d-flex justify-content-center align-items-center" style="background: var(--card-bg); border-radius: 0.5rem">
-                    <img src="static/images/image.png" class="profile-image p-1" alt="Фотография ученика">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body" style="border-radius: 0.5rem; margin-left: 1px">
-                        <p class="card-text"><strong>ФИО:</strong> Иванов Иван Иванович</p>
-                        <p class="card-text"><strong>Место обучения:</strong> Университет ИТ, Группа 101</p>
-                        <p class="card-text"><strong>Статус:</strong> Специалист-разработчик</p>
-                        <h6 class="card-title"><strong>Личное описание:</strong></h6>
-                        <p class="card-text">Я увлечён разработкой программного обеспечения и постоянно стремлюсь улучшать свои навыки. Участвую в различных проектах и конкурсах.</p>
-                    </div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="row g-0">
+            <div class="col-md-4 d-flex justify-content-center align-items-center" style="background: var(--card-bg); border-radius: 0.5rem">
+                <img src="static/images/image.png" class="profile-image p-1" alt="Фотография ученика">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" style="border-radius: 0.5rem; margin-left: 1px">
+                    <h5 class="card-title">Толоконников Андрей Владимирович</h5>
+                    <p class="card-text"><strong>Место обучения:</strong> МГУ</p>
+                    <p class="card-text"><strong>Статус:</strong> Специалист-разработчик</p>
+                    <h6 class="card-title"><strong>Личное описание:</strong></h6>
+                    <p class="card-text">Я увлечён разработкой программного обеспечения и постоянно стремлюсь улучшать свои навыки. Участвую в различных проектах и конкурсах.</p>
                 </div>
             </div>
         </div>
-
-        <div class="card mt-4">
-            <div class="card-body">
-                <h6 class="card-subtitle mb-2 custom-text-info">Активность на сайте:</h6>
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">Дата</th>
-                            <th scope="col">Действие</th>
-                            <th scope="col">Статус</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01.02.2025</td>
-                            <td>Завершил курс по Python</td>
-                            <td>✅</td>
-                        </tr>
-                        <tr>
-                            <td>15.01.2025</td>
-                            <td>Принял участие в хакатоне</td>
-                            <td>🏆</td>
-                        </tr>
-                        <tr>
-                            <td>10.12.2024</td>
-                            <td>Опубликовал проект на GitHub</td>
-                            <td>✅</td>
-                        </tr>
-                        <tr>
-                            <td>05.11.2024</td>
-                            <td>Получил сертификат по JavaScript</td>
-                            <td>✅</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <br>
-
-        <style>
-
-    .vertical-bar {
-        width: 30px; /* Ширина вертикального столбика */
-        position: absolute; /* Позволяет свободно позиционировать */
-        right: 20px; /* Прикрепляет к правому краю */
-        top: 0; /* Начинает от верхнего края */
-        height: 100%; /* Растягивается на всю высоту карточки */
-        background: linear-gradient(to bottom, #ff0000, #ff00ae, #8400ff, #009dff); /* Градиент */
-    }
-
-</style>
-
-<div class="card">
-    <div class="card-body">
-        <div class="master" style="font-weight: bold">Мастер:</div>
-        <div class="master">Devops</div>
-        <br>
-
-        <div class="candidat" style="font-weight: bold">Кандидант в мастеры</div>
-        <div class="candidat">Вокал</div>
-        <br>
-
-        <div class="expert" style="font-weight: bold">Эксперт</div>
-        <div class="expert">Экология, Веб-разработка</div>
-        <br>
-
-        <div class="specialist" style="font-weight: bold">Специалист:</div>
-        <div class="specialist">AI-разработка</div>
-
-        <div class="vertical-bar"></div>
     </div>
-</div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 custom-text-info">Активность на сайте:</h6>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Действие</th>
+                        <th scope="col">Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01.02.2025</td>
+                        <td>Завершил курс по Python</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>15.01.2025</td>
+                        <td>Принял участие в хакатоне</td>
+                        <td>🏆</td>
+                    </tr>
+                    <tr>
+                        <td>10.12.2024</td>
+                        <td>Опубликовал проект на GitHub</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>05.11.2024</td>
+                        <td>Получил сертификат по JavaScript</td>
+                        <td>✅</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <br>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="master" style="font-weight: bold">Мастер:</div>
+            <div class="master">Devops</div>
+            <br>
+
+            <div class="candidat" style="font-weight: bold">Кандидант в мастеры</div>
+            <div class="candidat">Вокал</div>
+            <br>
+
+            <div class="expert" style="font-weight: bold">Эксперт</div>
+            <div class="expert">Экология, Веб-разработка</div>
+            <br>
+
+            <div class="specialist" style="font-weight: bold">Специалист:</div>
+            <div class="specialist">AI-разработка</div>
+
+            <div class="vertical-bar"></div>
+        </div>
+    </div>
+
+    <br>
+
 
     <div class="card">
     <div class="card-body">
@@ -189,8 +184,6 @@
             config
         );
     </script>
-     <!-- Вертикальный столбик -->
-
-    </div>
+</div>
 
 {% endblock %}
