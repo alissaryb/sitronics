@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% block main_content %}
+
+<style>
+    .vertical-bar {
+        width: 30px; /* Ширина вертикального столбика */
+        position: absolute; /* Позволяет свободно позиционировать */
+        right: 20px; /* Прикрепляет к правому краю */
+        top: 0; /* Начинает от верхнего края */
+        height: 100%; /* Растягивается на всю высоту карточки */
+        background: linear-gradient(to bottom, #ff0000, #ff00ae, #8400ff, #009dff); /* Градиент */
+    }
+
+    .custom-text-info {
+        color: #d1d1d1; /* Светло-серый цвет */
+    }
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #d1d1d1; /* Светло-серый ободок */
+    }
+    .activity-table {
+        background-color: #6c757d;
+    }
+
+    .card-title {
+        color: white;
+    }
+    .card-text {
+        color: white;
+    }
+
+    div {
+        color: white;
+    }
+</style>
+
+<div class="container mt-5">
+  <div class="card mt-4">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 custom-text-info">Активность на сайте:</h6>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Действие</th>
+                        <th scope="col">Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01.02.2025</td>
+                        <td>Завершил курс по Python</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>15.01.2025</td>
+                        <td>Принял участие в хакатоне</td>
+                        <td>🏆</td>
+                    </tr>
+                    <tr>
+                        <td>10.12.2024</td>
+                        <td>Опубликовал проект на GitHub</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>05.11.2024</td>
+                        <td>Получил сертификат по JavaScript</td>
+                        <td>✅</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="master" style="font-weight: bold">Мастер:</div>
+            <div class="master">Devops</div>
+            <br>
+
+            <div class="candidat" style="font-weight: bold">Кандидант в мастеры</div>
+            <div class="candidat">Вокал</div>
+            <br>
+
+            <div class="expert" style="font-weight: bold">Эксперт</div>
+            <div class="expert">Экология, Веб-разработка</div>
+            <br>
+
+            <div class="specialist" style="font-weight: bold">Специалист:</div>
+            <div class="specialist">AI-разработка</div>
+
+            <div class="vertical-bar"></div>
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="card">
+    <div class="card-body">
+        <h5 class="text-center" style="color: white">Статистика </h5>
+        <canvas id="myChart" width="200"></canvas>
+    </div>
+    </div>
+
+    <script>
+
+        const values = [50, 73, 69, 52, 96, 57];
+
+        const labels = values.map((_, index) => index + 1);
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Баллы',
+                data: values,
+                fill: false,
+                borderColor: 'rgba(138,43,226,1)',
+                backgroundColor: 'rgba(138,43,226,1)',
+                tension: 0.1
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Баллы',
+                            color: 'white'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Номер работы',
+                            color: 'white'
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            displayColors: false,
+                            label: function (tooltipItem) {
+                                return `Баллы: ${tooltipItem.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+
+
+
+</div>
+
+{% endblock %}
