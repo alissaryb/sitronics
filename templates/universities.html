@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% block main_content %}
+
+<style>
+    .university-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(145, 106, 255, 0.3);
+    }
+    
+    .university-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(145, 106, 255, 0.2);
+    }
+    
+    .chart-container {
+        position: relative;
+        height: 400px;
+        margin: auto;
+    }
+    
+    .stats-badge {
+        background: rgba(145, 106, 255, 0.2);
+        border: 1px solid #916aff;
+        border-radius: 20px;
+        padding: 8px 15px;
+    }
+    
+    .filter-btn.active {
+        background: #916aff !important;
+        color: white !important;
+    }
+</style>
+
+<div class="container mt-5">
+    <!-- Заголовок и фильтры -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1 class="text-violet">Университеты-партнёры</h1>
+        <div class="btn-group">
+            <button class="btn btn-outline-violet filter-btn active" style="color: white;" data-filter="all">Все</button>
+            <button class="btn btn-outline-violet filter-btn"  style="color: white;" data-filter="federal">Федеральные</button>
+            <button class="btn btn-outline-violet filter-btn"  style="color: white;" data-filter="research">Научные</button>
+        </div>
+    </div>
+
+    <!-- Круговая диаграмма -->
+    <div class="card mb-5 border-violet">
+        <div class="card-body">
+            <h3 class="text-center mb-4" style="color: white;">Распределение студентов</h3>
+            <div class="chart-container">
+                <canvas id="universityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Список университетов -->
+    <div class="row g-4">
+        <div class="col-md-6 university-card" data-category="federal">
+            <div class="p-4 d-flex align-items-center">
+                <img src="/static/media/msu-logo.png" alt="МГУ" class="rounded-circle me-4" width="80" height="80">
+                <div>
+                    <h4 class="text-violet">МГУ им. Ломоносова</h4>
+                    <div class="d-flex gap-3 mt-2">
+                        <span class="stats-badge">🎓 40 000 студентов</span>
+                        <span class="stats-badge">🏛 Москва</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 university-card" data-category="federal">
+            <div class="p-4 d-flex align-items-center">
+                <img src="/static/media/spbu-logo.png" alt="СПбГУ" class="rounded-circle me-4" width="80" height="80">
+                <div>
+                    <h4 class="text-violet">СПбГУ</h4>
+                    <div class="d-flex gap-3 mt-2">
+                        <span class="stats-badge">🎓 33 000 студентов</span>
+                        <span class="stats-badge">🏛 Санкт-Петербург</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Добавьте остальные университеты -->
+    </div>
+
+    <!-- Статистическая таблица -->
+    <div class="card mt-5 border-violet">
+        <div class="card-body">
+            <h4 class="text-violet mb-4" style="color: white;">Сравнительные показатели</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Университет</th>
+                        <th>Студенты</th>
+                        <th>Преподаватели</th>
+                        <th>Рейтинг QS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>МГУ</td>
+                        <td>40,000</td>
+                        <td>5,000</td>
+                        <td>87</td>
+                    </tr>
+                    <tr>
+                        <td>СПбГУ</td>
+                        <td>33,000</td>
+                        <td>4,200</td>
+                        <td>270</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Данные для диаграммы
+    const universities = {
+        labels: ['МГУ', 'СПбГУ', 'МФТИ', 'ВШЭ', 'МИФИ', 'КФУ'],
+        datasets: [{
+            data: [40000, 33000, 7500, 45000, 8500, 35000],
+            backgroundColor: [
+                'rgba(145, 106, 255, 0.7)',
+                'rgba(145, 106, 255, 0.6)',
+                'rgba(145, 106, 255, 0.5)',
+                'rgba(145, 106, 255, 0.4)',
+                'rgba(145, 106, 255, 0.3)',
+                'rgba(145, 106, 255, 0.2)'
+            ],
+            borderColor: '#916aff',
+            borderWidth: 2
+        }]
+    };
+
+    // Инициализация диаграммы
+    const ctx = document.getElementById('universityChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: universities,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        color: '#fff',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ` Студентов: ${context.raw.toLocaleString()}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Фильтрация университетов
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.dataset.filter;
+            document.querySelectorAll('.university-card').forEach(card => {
+                card.style.display = (filter === 'all' || card.dataset.category === filter) 
+                    ? 'block' 
+                    : 'none';
+            });
+        });
+    });
+</script>
+
+{% endblock %}

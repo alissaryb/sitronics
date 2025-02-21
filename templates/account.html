@@ -35,6 +35,26 @@
     div {
         color: white;
     }
+
+    .edit-btn {
+        margin: 20px auto;
+        display: block;
+        padding: 12px 30px;
+        background: linear-gradient(45deg, #8A2BE2, #009dff);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    }
+
+    .edit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5);
+        background: linear-gradient(45deg, #009dff, #8A2BE2);
+    }
 </style>
 
 <div class="container mt-5">
@@ -56,7 +76,30 @@
         </div>
     </div>
 
+    <br>
 
+    <div class="card">
+        <div class="card-body">
+            <div class="master" style="font-weight: bold">Мастер:</div>
+            <div class="master">Devops</div>
+            <br>
+
+            <div class="candidat" style="font-weight: bold">Кандидант в мастеры</div>
+            <div class="candidat">Вокал</div>
+            <br>
+
+            <div class="expert" style="font-weight: bold">Эксперт</div>
+            <div class="expert">Экология, Веб-разработка</div>
+            <br>
+
+            <div class="specialist" style="font-weight: bold">Специалист:</div>
+            <div class="specialist">AI-разработка</div>
+
+            <div class="vertical-bar"></div>
+        </div>
+    </div>
+
+    <button class="edit-btn">Изменить данные</button>
 </div>
 
 {% endblock %}
