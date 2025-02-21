@@ -9,6 +9,11 @@
         --purple-active:#7a1db6;
     }
 
+.card{
+    border: 1px solid var(--card-bg);
+    background: var(--card-bg);
+    border-radius: 0.7rem;
+}
 
 .card-body {
     border: 1px solid var(--card-bg);
