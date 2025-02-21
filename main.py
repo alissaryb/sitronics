@@ -143,6 +143,10 @@ def internship():
     companies = get_companies()
     return render_template('internship.html' , companies=companies)
 
+@app.route('/universities')
+def universities():
+    return render_template('universities.html')
+
 
 if __name__ == "__main__":
     app.run(port=8080, host='127.0.0.1', threaded=True)
