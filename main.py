@@ -22,7 +22,14 @@ def get_repetitors():
     ]
 
 def get_companies():
-    return [{'name': 'Tech Innovations', 'post': 'Junior Developer', 'rank' : 'Кандитат в мастера'}, {'name': 'Code Wizard', 'post': 'Intern Software Engineer', 'rank' : 'Специалист'}, {'name': 'Data Solutions', 'post': 'Data Analyst Intern', 'rank' : 'Эксперт'}, {'name': 'AI Labs', 'post': 'Machine Learning Intern', 'rank' : 'Мастер'}, {'name': 'Web Creators', 'post': 'Frontend Developer Intern', 'rank' : 'Кандитат в мастера'}, {'name': 'Cyber Security Inc.', 'post': 'Security Analysis Intern', 'rank' : 'Эксперт'}]
+    return [
+        {'name': 'МТС Диджитал', 'post': 'Junior Developer', 'rank' : 'Кандитат в мастера', 'link' : 'https://mts-digital.ru/'}, 
+        {'name': 'T-bank', 'post': 'Intern Software Engineer', 'rank' : 'Мастер', 'link' : 'https://education.tbank.ru/start/'}, 
+        {'name': 'Sitronics Group', 'post': 'Data Analyst Intern', 'rank' : 'Эксперт', 'link' : 'https://www.sitronics.com/businesses'}, 
+        {'name': 'VK Tech', 'post': 'Machine Learning Intern', 'rank' : 'Мастер', 'link' : 'https://tech.vk.com/'}, 
+        {'name': 'Ростех', 'post': 'Frontend Developer Intern', 'rank' : 'Кандитат в мастера', 'link' : 'https://rostec.ru/careers/'}, 
+        {'name': 'СИГМА', 'post': 'Security Analysis Intern', 'rank' : 'Специалист', 'link' : 'https://sigma-it.ru/'}
+        ]
 
 def get_organization():
     courses = get_courses()
